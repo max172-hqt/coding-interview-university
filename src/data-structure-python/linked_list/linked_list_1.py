@@ -101,7 +101,25 @@ class LinkedList:
         return self.size() == 0
 
     def insert(self, index, value):
-        pass
+        if index == 0:
+            self.push_front(value)
+            return
+
+        # 1 -> 2 -> 3 -> 4
+        curr = self.head
+        prev = None
+        while index > 0 and curr.next:
+            prev = curr
+            curr = curr.next 
+            index -= 1
+
+        newNode = Node(value)
+        if index > 0:  # index out of range
+            curr.next = newNode
+        else:
+            # insert before curr
+            prev.next = newNode
+            newNode.next = curr
 
     def __len__(self):
         return self.size()
@@ -161,6 +179,27 @@ def main():
     assert ll.value_at(0) == 6
     assert ll.value_at(1) == 5
     assert ll.value_at(2) == None
+
+    # Test insert
+    ll = LinkedList()
+    ll.insert(0, 0)
+    assert str(ll) == '0 -> None'
+
+    ll = LinkedList()
+    ll.push_front(0)
+    ll.push_front(1)
+    ll.push_front(2)
+    ll.push_front(3)
+    ll.insert(0, 4)
+    assert str(ll) == '4 -> 3 -> 2 -> 1 -> 0 -> None'
+    ll.insert(1, 5)
+    assert str(ll) == '4 -> 5 -> 3 -> 2 -> 1 -> 0 -> None', str(ll)
+    ll.insert(10, 5)
+    assert str(ll) == '4 -> 5 -> 3 -> 2 -> 1 -> 0 -> 5 -> None', str(ll)
+    ll.insert(6, 6)
+    assert str(ll) == '4 -> 5 -> 3 -> 2 -> 1 -> 0 -> 6 -> 5 -> None', str(ll)
+    ll.insert(3, 6)
+    assert str(ll) == '4 -> 5 -> 3 -> 6 -> 2 -> 1 -> 0 -> 6 -> 5 -> None', str(ll)
 
 
 if __name__ == '__main__':

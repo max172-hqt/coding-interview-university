@@ -57,6 +57,7 @@ void selectionSort(int a[])
 void bubbleSort(int a[]) 
 {
     int i, j;
+    // 9 passes are needed
     for (i = 1; i < SIZE; i++) {
         for (j = 0; j < SIZE - 1; j++) {
             if (a[j] > a[j + 1]) {
