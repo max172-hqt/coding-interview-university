@@ -118,28 +118,63 @@ void insert(NodePtr *sPtr, char value)
 }
 
 // Delete a list element
+/* char delete(NodePtr *sPtr, char value) */
+/* { */
+/*     NodePtr curr; */
+/*     NodePtr prev; */
+
+/*     prev = NULL; */
+/*     curr = *sPtr; */
+
+/*     while (curr != NULL && curr->data != value) { */
+/*         prev = curr; */
+/*         curr = curr->next; */
+/*     } */
+
+/*     if (curr == NULL) { */
+/*         return '\0'; */
+/*     } else { */
+/*         if (prev == NULL) { */
+/*             *sPtr = curr->next; */
+/*         } else { */
+/*             prev->next = curr->next; */
+/*         } */
+/*         free(curr); */
+/*         return value; */
+/*     } */
+/* } */
+
 char delete(NodePtr *sPtr, char value)
 {
-    NodePtr curr;
+    NodePtr temp;
     NodePtr prev;
+    NodePtr curr;
 
-    prev = NULL;
-    curr = *sPtr;
-
-    while (curr != NULL && curr->data != value) {
-        prev = curr;
-        curr = curr->next;
+    if (*sPtr == NULL) {
+        return '\0';
     }
 
-    if (curr == NULL) {
-        return '\0';
-    } else {
-        if (prev == NULL) {
-            *sPtr = curr->next;
-        } else {
-            prev->next = curr->next;
-        }
-        free(curr);
+    if ((*sPtr)->data == value) {
+        temp = *sPtr;
+        *sPtr = (*sPtr)->next;
+        free(temp);
         return value;
+    } else {
+        prev = *sPtr;
+        curr = (*sPtr)->next;
+
+        while (curr != NULL && curr->data != value) {
+            prev = curr;
+            curr = curr->next;
+        }
+
+        if (curr != NULL) { // Loop to the end of the list
+            temp = curr;
+            prev->next = curr->next;
+            free(temp);
+            return value;
+        }
+
+        return '\0';
     }
 }
