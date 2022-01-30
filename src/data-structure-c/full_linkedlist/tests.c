@@ -1,13 +1,63 @@
 #include <stdio.h>
-#include <stdlib.h>
+#include <assert.h>
 #include "tests.h"
+#include "linkedlist.h"
 
-void testCreateLinkedList()
+void testPushFront()
 {
-    printf("Test here\n");
+    LinkedList *list = createNew();
+    assert(empty(list));
+    pushFront(list, 10);
+    assert(!empty(list));
+    assert(size(list) == 1);
+    pushFront(list, 11);
+    pushFront(list, 12);
+    assert(size(list) == 3);
+    /* printDebug(list); */
+}
+
+void testPushBack()
+{
+    LinkedList *list = createNew();
+    assert(empty(list));
+    pushBack(list, 10);
+    assert(!empty(list));
+    assert(size(list) == 1);
+    pushBack(list, 11);
+    pushBack(list, 12);
+    assert(size(list) == 3);
+    pushFront(list, 13);
+    assert(size(list) == 4);
+    /* printDebug(list); */
+}
+
+void testPopFront()
+{
+    LinkedList *list = createNew();
+    pushFront(list, 10);
+    pushFront(list, 11);
+    pushFront(list, 12);
+    pushFront(list, 13);
+    assert(size(list) == 4);
+
+    assert(popFront(list) == 13);
+    assert(size(list) == 3);
+
+    assert(popFront(list) == 12);
+    assert(size(list) == 2);
+
+    assert(popFront(list) == 11);
+    assert(size(list) == 1);
+
+    assert(popFront(list) == 10);
+    assert(size(list) == 0);
+
+    assert(popFront(list) == '\0');
 }
 
 void runTests()
 {
-    testCreateLinkedList();
+    testPushFront();
+    testPushBack();
+    testPopFront();
 }
