@@ -1,3 +1,6 @@
 void runTests();
-void testCreateLinkedList();
-void checkAddress(void *p);
+void testPushFront();
+void testPushBack();
+void testPopFront();
+void testPopBack();
+void testFrontBack();
