@@ -97,6 +97,43 @@ void testFrontBack()
     assert(back(list) == 10);
 }
 
+void testValueAt()
+{
+    LinkedList *list = createNew();
+    assert(valueAt(list, 0) == '\0'); 
+    pushFront(list, 11);
+    pushBack(list, 12);
+    pushFront(list, 13);
+    pushBack(list, 14);
+    /* printDebug(list); */
+
+    assert(valueAt(list, 0) == 13);
+    assert(valueAt(list, 1) == 11);
+    assert(valueAt(list, 2) == 12);
+    assert(valueAt(list, 3) == 14);
+    /* assert(valueAt(list, 5) == '\0'); */
+}
+
+void testInsert()
+{
+    LinkedList *list = createNew();
+    insert(list, 1, 10);
+    insert(list, 0, 10);
+    insert(list, 0, 11);
+
+    /* printDebug(list); */
+
+    assert(size(list) == 2);
+    pushBack(list, 12);
+    assert(size(list) == 3);
+    insert(list, 2, 13);
+    insert(list, 2, 14);
+    insert(list, 4, 15);
+    insert(list, 0, 1);
+
+    assert(size(list) == 7);
+    /* printDebug(list); */
+}
 
 void runTests()
 {
@@ -105,4 +142,6 @@ void runTests()
     testPopFront();
     testPopBack();
     testFrontBack();
+    testValueAt();
+    testInsert();
 }

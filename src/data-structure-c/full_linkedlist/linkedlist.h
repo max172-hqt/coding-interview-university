@@ -22,6 +22,8 @@ int popFront(LinkedList *list);
 int popBack(LinkedList *list);
 int front(LinkedList *list);
 int back(LinkedList *list);
+int valueAt(LinkedList *list, int index);
+void insert(LinkedList *list, int index, int value);
 
 int size(LinkedList *list);
 bool empty(LinkedList *list);

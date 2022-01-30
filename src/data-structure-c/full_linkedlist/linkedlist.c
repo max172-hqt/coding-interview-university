@@ -132,6 +132,68 @@ int back(LinkedList* list)
     return list->tail->data;
 }
 
+int valueAt(LinkedList *list, int index)
+{
+    if (list->head == 0) {
+        printf("List is empty\n");
+        return '\0';
+    }
+
+    Node *curr = list->head;    
+
+    while (curr != 0 && index > 0) {
+        index--;
+        curr = curr->next;
+    }
+
+    if (index != 0) {
+        printf("Out of bound!\n");
+        return '\0';
+    }
+
+    return curr->data;
+}
+
+void insert(LinkedList *list, int index, int value)
+{
+    Node *curr;
+    Node *prev;
+    Node *newNode;
+
+    prev = 0;
+    curr = list->head;
+
+    while (curr && curr->next != 0 && index > 0) {
+        index--;
+        prev = curr;
+        curr = curr->next;
+    }
+    
+    // 1 -> 2 -> 3 -> 4 -> 5
+    // 1 -> 2 -> 3 -> 4 -> new -> 5
+    if (index > 0) {
+        printf("Index out of bounds\n");
+        return;
+    }
+
+    newNode = (Node*)malloc(sizeof(Node));
+    checkAddress(newNode);
+    newNode->data = value;
+    if (prev == 0) {
+        // insert to head
+        newNode->next = list->head;
+        list->head = newNode;
+    } else {
+        prev->next = newNode;
+        newNode->next = curr;
+    }
+
+    if (list->tail == 0) {
+        // empty list
+        list->tail = list->head;
+    }
+}
+
 void printDebug(LinkedList *list)
 {
     printf("Head %p\n", list->head);
