@@ -6,3 +6,5 @@ void testPopBack();
 void testFrontBack();
 void testValueAt();
 void testInsert();
+void testErase();
+void testNthFromEnd();

@@ -194,6 +194,73 @@ void insert(LinkedList *list, int index, int value)
     }
 }
 
+void erase(LinkedList* list, int index)
+{
+    Node *prev;
+    Node *curr;
+    Node *itemToRemove;
+
+    prev = 0;
+    curr = list->head;
+
+    while (curr && curr->next != NULL && index > 0) {
+        index--;
+        prev = curr;
+        curr = curr->next;
+    }
+
+    if (index > 0) {
+        printf("Index out of bounds\n");
+        return;
+    }
+
+    if (curr == 0) {
+        printf("List is empty\n");
+    } else if (prev == 0) {
+        itemToRemove = list->head;
+        list->head = list->head->next;
+        if (list->head == 0) {
+            list->tail = 0;
+        }
+        free(itemToRemove);
+    } else {
+        itemToRemove = curr;
+        prev->next = curr->next;
+        free(itemToRemove);
+    }
+}
+
+int nthFromEnd(LinkedList *list, int n)
+{
+    Node *fast;
+    Node *slow;
+    int current = 0;
+
+    fast = list->head;
+    slow = list->head;
+
+    while (current < n && fast != 0 && fast->next != 0) {
+        fast = fast->next; 
+        current++;
+    }
+
+    if (current < n) { // fast becomes null
+        printf("Index out of bounds\n");
+        return '\0';
+    }
+
+    while (fast != 0 && fast->next != 0) {
+        fast = fast->next;
+        slow = slow->next;
+    }
+
+    if (slow != 0) {
+        return slow->data;
+    }
+
+    return '\0';
+}
+
 void printDebug(LinkedList *list)
 {
     printf("Head %p\n", list->head);

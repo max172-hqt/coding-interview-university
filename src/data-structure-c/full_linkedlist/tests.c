@@ -135,6 +135,63 @@ void testInsert()
     /* printDebug(list); */
 }
 
+void testErase()
+{
+    printf("\nTest Erase\n");
+    LinkedList *list = createNew();
+    erase(list, 1);
+    erase(list, 0);
+
+    insert(list, 0, 10);
+    erase(list, 0);
+
+    insert(list, 0, 10);
+    insert(list, 0, 11);
+    insert(list, 0, 12);
+    insert(list, 0, 13);
+
+    /* printDebug(list); */
+    erase(list, 0);
+    /* printDebug(list); */
+    assert(size(list) == 3);
+
+    insert(list, 0, 10);
+    /* printDebug(list); */
+
+    erase(list, 2);
+    assert(size(list) == 3);
+
+    /* printDebug(list); */
+    erase(list, 2);
+    assert(size(list) == 2);
+    /* printDebug(list); */
+}
+
+void testNthFromEnd()
+{
+    printf("\nTest nth index from end\n");
+    LinkedList *list = createNew();
+    assert(nthFromEnd(list, 0) == '\0');
+
+    insert(list, 0, 10);
+    assert(nthFromEnd(list, 0) == 10);
+    assert(nthFromEnd(list, 1) == '\0');
+
+    insert(list, 0, 11);
+    insert(list, 0, 12);
+    insert(list, 0, 13);
+    insert(list, 0, 14);
+    insert(list, 0, 15);
+
+    assert(size(list) == 6);
+    printDebug(list);
+    assert(nthFromEnd(list, 0) == 10);
+    assert(nthFromEnd(list, 1) == 11);
+    assert(nthFromEnd(list, 2) == 12);
+    assert(nthFromEnd(list, 5) == 15);
+    assert(nthFromEnd(list, 6) == '\0');
+}
+
 void runTests()
 {
     testPushFront();
@@ -144,4 +201,6 @@ void runTests()
     testFrontBack();
     testValueAt();
     testInsert();
+    testErase();
+    testNthFromEnd();
 }
