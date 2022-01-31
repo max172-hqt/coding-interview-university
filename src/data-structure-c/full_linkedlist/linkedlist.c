@@ -226,6 +226,10 @@ void erase(LinkedList* list, int index)
     } else {
         itemToRemove = curr;
         prev->next = curr->next;
+
+        if (prev->next == 0) {
+            list->tail = prev;
+        }
         free(itemToRemove);
     }
 }
@@ -289,6 +293,63 @@ void reverse(LinkedList *list)
 
     list->head = prev;
     list->tail = newTail;
+}
+
+int removeValue(LinkedList *list, int value)
+{
+    // empty list => return null
+    //
+    // 2 pointers, prev and curr
+    // loop through the list
+    // curr && curr->data != value
+    // curr == null return -> no element will be found
+    // otherwise curr will be the item to be removed
+    // also need to consider updating the head and tail
+    //
+    // free the pointer
+    // return value
+    //
+    if (list->head == 0) {
+        return '\0';
+    }
+
+    Node *curr;
+    Node *prev;
+    Node *itemToRemove;
+
+    if (list->head->data == value) {
+        itemToRemove = list->head;
+        list->head = list->head->next;
+        free(itemToRemove);
+
+        if (list->head == 0) {
+            list->tail = 0;
+        }
+
+        return value;
+    }
+
+    curr = list->head->next;
+    prev = list->head;
+
+    while (curr != 0 && curr->data != value) {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    if (curr != 0) { // curr is the item to be removed
+        itemToRemove = curr;
+        prev->next = curr->next;
+
+        // what if tail is removed?
+        if (prev->next == 0) {
+            list->tail = prev;
+        }
+        free(itemToRemove);
+        return value;
+    }
+
+    return '\0';
 }
 
 void printDebug(LinkedList *list)

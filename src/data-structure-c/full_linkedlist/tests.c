@@ -165,6 +165,13 @@ void testErase()
     erase(list, 2);
     assert(size(list) == 2);
     /* printDebug(list); */
+
+    erase(list, 1);
+    // Remove last item and update tail
+    assert(size(list) == 1);
+    /* printDebug(list); */
+
+    pushBack(list, 11);
 }
 
 void testNthFromEnd()
@@ -207,6 +214,31 @@ void testReverse()
     /* printDebug(list); */
 }
 
+void testRemoveValue()
+{
+    LinkedList *list = createNew();
+    insert(list, 0, 10);
+    insert(list, 0, 11);
+    insert(list, 0, 12);
+    insert(list, 0, 12);
+    insert(list, 0, 14);
+    insert(list, 0, 15);
+        
+    removeValue(list, 10);
+    /* printDebug(list); */
+    pushBack(list, 10);
+    /* printDebug(list); */
+
+    removeValue(list, 15);
+    /* printDebug(list); */
+    pushFront(list, 15);
+    /* printDebug(list); */
+
+    removeValue(list, 12);
+    printDebug(list);
+    assert(size(list) == 5);
+}
+
 void runTests()
 {
     testPushFront();
@@ -219,4 +251,5 @@ void runTests()
     testErase();
     testNthFromEnd();
     testReverse();
+    testRemoveValue();
 }

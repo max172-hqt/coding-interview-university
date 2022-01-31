@@ -9,3 +9,4 @@ void testInsert();
 void testErase();
 void testNthFromEnd();
 void testReverse();
+void testRemoveValue();

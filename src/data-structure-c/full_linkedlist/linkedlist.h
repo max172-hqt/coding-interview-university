@@ -27,6 +27,7 @@ void insert(LinkedList *list, int index, int value);
 void erase(LinkedList *list, int index);
 int nthFromEnd(LinkedList *list, int n);
 void reverse(LinkedList *list);
+int removeValue(LinkedList *list, int value);
 
 int size(LinkedList *list);
 bool empty(LinkedList *list);
