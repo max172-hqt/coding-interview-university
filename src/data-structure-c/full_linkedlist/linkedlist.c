@@ -261,6 +261,36 @@ int nthFromEnd(LinkedList *list, int n)
     return '\0';
 }
 
+void reverse(LinkedList *list)
+{
+    if (list->head == 0) {
+        return;
+    }
+
+    Node *curr;
+    Node *prev;
+    Node *next;
+    Node *newTail;
+
+    curr = list->head;
+    prev = 0;
+    newTail = 0;
+    // 1 -> 2 -> 3 -> 4 -> 5
+    while (curr != 0) {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+
+        if (prev != 0 && newTail == 0) {
+            newTail = prev;
+        }
+    }
+
+    list->head = prev;
+    list->tail = newTail;
+}
+
 void printDebug(LinkedList *list)
 {
     printf("Head %p\n", list->head);

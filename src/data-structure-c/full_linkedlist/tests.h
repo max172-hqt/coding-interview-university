@@ -8,3 +8,4 @@ void testValueAt();
 void testInsert();
 void testErase();
 void testNthFromEnd();
+void testReverse();

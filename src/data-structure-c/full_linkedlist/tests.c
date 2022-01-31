@@ -184,12 +184,27 @@ void testNthFromEnd()
     insert(list, 0, 15);
 
     assert(size(list) == 6);
-    printDebug(list);
+    /* printDebug(list); */
     assert(nthFromEnd(list, 0) == 10);
     assert(nthFromEnd(list, 1) == 11);
     assert(nthFromEnd(list, 2) == 12);
     assert(nthFromEnd(list, 5) == 15);
     assert(nthFromEnd(list, 6) == '\0');
+}
+
+void testReverse()
+{
+    LinkedList *list = createNew();
+    insert(list, 0, 11);
+    /* reverse(list); */
+    /* printDebug(list); */
+    insert(list, 0, 12);
+    insert(list, 0, 13);
+    insert(list, 0, 14);
+    insert(list, 0, 15);
+    /* printDebug(list); */
+    reverse(list);
+    /* printDebug(list); */
 }
 
 void runTests()
@@ -203,4 +218,5 @@ void runTests()
     testInsert();
     testErase();
     testNthFromEnd();
+    testReverse();
 }
