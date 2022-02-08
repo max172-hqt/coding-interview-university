@@ -29,11 +29,29 @@ int main(void)
     push(list, 15);
     push(list, 16);
 
-    print_debug(list);
     assert(at(list, 0) == 10);
+
+    /* insert(list, 7, 9); */
+    prepend(list, 100);
+    print_debug(list);
+
+    printf("%d\n", pop(list));
+    pop(list);
+    /* pop(list); */
+    /* pop(list); */
+    /* pop(list); */
+    /* pop(list); */
+    /* print_debug(list); */
+    /* prepend(list, 100); */
+    /* prepend(list, 100); */
+    /* prepend(list, 100); */
+
+    delete(list, 2);
+    print_debug(list);
+    my_remove(list, 12);
+    print_debug(list);
 
     free(list->items);
     free(list);
-
     return 0;
 }
