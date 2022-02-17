@@ -20,4 +20,6 @@ struct hashmap {
 
 typedef struct hashmap HashMap;
 
+HashMap create_new(int capacity);
+
 #endif
