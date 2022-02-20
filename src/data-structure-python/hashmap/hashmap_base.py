@@ -3,7 +3,7 @@ from map_base import MapBase
 
 
 class HashMapBase(MapBase):
-    def __init__(self, cap=2, p=109345121):
+    def __init__(self, cap=11, p=109345121):
         self._table = [None] * cap 
         self._n = 0
         self._cap = cap 
@@ -21,8 +21,8 @@ class HashMapBase(MapBase):
     def __setitem__(self, k, v):
         j = self._hash_function(k)
         self._bucket_setitem(j, k, v)
-        # if self._n > len(self._table) // 2:
-        #     self.resize(len(self._table) * 2 - 1) # -1 for prime
+        if self._n > len(self._table) // 2:
+            self.resize(len(self._table) * 2 - 1) # -1 for prime
 
     def __delitem__(self, k):
         j = self._hash_function(k)

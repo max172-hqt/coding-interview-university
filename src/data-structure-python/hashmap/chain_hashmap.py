@@ -1,5 +1,6 @@
 from hashmap_base import HashMapBase
 
+
 class ChainHashMap(HashMapBase):
     class Node:
         def __init__(self, item):
